@@ -1,0 +1,56 @@
+model: WRN_40
+client_model: 
+    - WRN_40
+    
+augment: True
+
+dataset_path: &datapath /workspace/DATASETS/federated_datasets/cifar10
+dataset: &dataname cifar10
+nclass: 10
+test_dataset: *dataname
+test_dataset_path: *datapath
+
+pin_memory: True
+n_workers: 6
+SEED: 42
+batch_size: 32
+gpu: 0
+server_gpu: 0
+
+
+noise_batch_size: 128
+noise_batch: 200
+kemf_avg: True
+
+iid: False
+beta: 0.6
+alpha: 0.4
+params_avg: 0.001
+
+getavg: False
+
+n_clients: 30
+sample_clients: 0.3
+
+server_lr: 0.001
+lr: 0.001
+
+NO_DML_MODELS: 
+    - None
+    
+total_iterations: 100
+server_iterations: 5
+client_iterations: 10
+img_size:
+    - 32
+    - 32
+ 
+opt: SGD
+momentum: 0.9
+
+acc_curves: acc_plots/wrn40_c10_sel1.png
+acc_curves_pkl: acc_plots/wrn40_c10_sel1.pkl
+
+return_logs: False
+pid: 35643
+save: False

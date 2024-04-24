@@ -1,0 +1,63 @@
+model: WRN_40
+client_model: 
+    - Resnet34
+    - Mobilenetv2
+    - Resnet18
+    - Shufflenet
+    - WRN_40
+    - WRN_40
+    
+augment: True
+
+dataset_path: &datapath /workspace/tinyimgnet/tiny-imagenet-200/train
+dataset: &dataname tinyimagenet200
+nclass: 200
+test_dataset: *dataname
+test_dataset_path: /workspace/tinyimgnet/tiny-imagenet-200/val/images
+test_annotations: /workspace/tinyimgnet/tiny-imagenet-200/val/val_annotations.txt
+wnids_path: /workspace/tinyimgnet/tiny-imagenet-200/wnids.txt
+
+pin_memory: True
+n_workers: 0
+SEED: 42
+batch_size: 64
+gpu: 0
+server_gpu: 0
+
+
+noise_batch_size: 512
+noise_batch: 200
+kemf_avg: True
+
+iid: False
+beta: 0.6
+alpha: 0.4
+params_avg: 0.001
+
+getavg: True
+
+n_clients: 20
+sample_clients: 0.4
+
+server_lr: 0.001
+lr: 0.001
+
+NO_DML_MODELS: 
+    - WRN_40
+    
+total_iterations: 150
+server_iterations: 5
+client_iterations: 10
+img_size:
+    - 64
+    - 64
+ 
+opt: SGD
+momentum: 0.9
+
+acc_curves: acc_plots/wrn40_timg.png
+acc_curves_pkl: acc_plots/wrn40_timg.pkl
+
+return_logs: False
+pid: 35643
+save: False
